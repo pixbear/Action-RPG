@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: dd6b5eff35261a04591ca474cdfed9c4
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - DalseoHealing
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 11db51947425aa2499c2235e5b824b80, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

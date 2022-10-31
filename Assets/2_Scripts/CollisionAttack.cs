@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CollisionAttack : MonoBehaviour
+{
+    // е╦ют
+    enum MinionType { Red, Blue };
+    [SerializeField] MinionType minionType;
+
+
+
+
+    private void OnEnable()
+    {
+        StartCoroutine("AttackRoutien");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("EnemyBlue"))
+        {
+            int _damage = Random.Range(20, 25);
+            other.GetComponent<Enemy>().TakeDamage(_damage);
+        }
+
+        if (other.CompareTag("TowerBlue"))
+        {
+            int _damage = Random.Range(20, 25);
+            other.GetComponent<Tower>().TakeDamage(_damage);
+        }
+    }
+
+    IEnumerator AttackRoutien()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        gameObject.SetActive(false);
+    }
+}
