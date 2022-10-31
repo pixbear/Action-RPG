@@ -253,7 +253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24703f39a9706794eaa915742b9d2164, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 149.3
+      value: 83.85
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24703f39a9706794eaa915742b9d2164, type: 3}
       propertyPath: m_LocalPosition.y
@@ -261,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24703f39a9706794eaa915742b9d2164, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 150.2
+      value: 111.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 24703f39a9706794eaa915742b9d2164, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5161,7 +5161,7 @@ MonoBehaviour:
   minPrefabBlue: {fileID: 3407808105405834214, guid: 77cf91b9c2ef51d4d95d96dea669c591, type: 3}
   minGenPosRed: {fileID: 850677079}
   minGenPosBlue: {fileID: 1654137219}
-  startGenTime: 1
+  startGenTime: 10
   minionGenTime: 30
 --- !u!4 &869405324
 Transform:
@@ -11207,7 +11207,7 @@ MonoBehaviour:
   hpGageBar: {fileID: 1459099087}
   hpGage: {fileID: 1141103383}
   curHp: 0
-  maxHp: 1111
+  maxHp: 200
   canvasHpGage: {fileID: 1380339594}
   canvasHpText: {fileID: 1817841882}
   showDamage: {fileID: 7484482314412720451, guid: abae98b05388bd643a887430b6d7c1bd, type: 3}
@@ -11241,10 +11241,10 @@ MonoBehaviour:
   - {fileID: 2145193408}
   qSkillCoolTime: 8
   wSkillCoolTime: 15
-  eSkillCoolTime: 5
-  rSkillCoolTime: 5
-  dSkillCoolTime: 5
-  fSkillCoolTime: 5
+  eSkillCoolTime: 10
+  rSkillCoolTime: 30
+  dSkillCoolTime: 50
+  fSkillCoolTime: 50
   isSkill: 0
   isQcool: 0
   isWcool: 0
