@@ -7,7 +7,8 @@ public class Axe : MonoBehaviour
     [SerializeField] float axeMoveSpeed;   // 도끼 이동 스피드
     [SerializeField] float axeRotSpeed;    // 도끼 회전 스피드
 
-    [SerializeField] int QSkillDamage;     // Q 스킬 데미지       
+    [SerializeField] int QSkillDamage;     // Q 스킬 데미지
+    [SerializeField] ParticleSystem qEffect;
 
     void Update()
     {
@@ -39,6 +40,9 @@ public class Axe : MonoBehaviour
         {
             int _damage = Random.Range(QSkillDamage, QSkillDamage + 5);
             other.GetComponent<Enemy>().TakeDamage(_damage);
+            qEffect.Play();
+
+            
         }
     }
 }

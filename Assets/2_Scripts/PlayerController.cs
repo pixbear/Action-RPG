@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
     // W Skill
     [Header("----------------------- W Skill -----------------------")]
     [SerializeField] GameObject WSkillManager;
+    [SerializeField] ParticleSystem wEffect;
 
     // E Skill
     [Header("----------------------- E Skill -----------------------")]
@@ -400,6 +401,8 @@ public class PlayerController : MonoBehaviour
 
             anim.SetTrigger("isWSkill");
             WSkillManager.GetComponent<ESkillAxe>().OnESkill();
+
+            wEffect.gameObject.SetActive(true);
         }
 
         if (coolTimeImages[1].fillAmount <= 0)

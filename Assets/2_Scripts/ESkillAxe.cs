@@ -59,6 +59,8 @@ public class ESkillAxe : MonoBehaviour
 
         axeGroup.gameObject.SetActive(false);
 
+
+
         for (int i = 0; i < axePrefab.Length; i++)
         {
             axePrefab[i].transform.position = originPos[i].position;
