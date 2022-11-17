@@ -46,6 +46,8 @@ public class UI_Manager : MonoBehaviour
             Destroy(this.gameObject);
         }
         #endregion
+
+        Application.targetFrameRate = 60;
     }
 
     // 안내 문자 (추가 수정 가능)
