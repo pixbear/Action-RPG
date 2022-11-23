@@ -101,26 +101,6 @@ public class Enemy : MonoBehaviour
 
     void SearchEnemy() // 주변의 적 탐색
     {
-        //Collider[] cols = Physics.OverlapSphere(transform.position, enemyCheakRange, attackLayer);
-        //Transform shortTarget = null;
-
-        //if (cols.Length > 0)
-        //{
-        //    float shortDistance = Mathf.Infinity;
-        //    foreach (Collider col in cols)
-        //    {
-        //        float distance = Vector3.SqrMagnitude(transform.position - col.transform.position);
-        //        if (shortDistance > distance)
-        //        {
-        //            shortDistance = distance;
-        //            shortTarget = col.transform;
-        //        }
-        //    }
-        //}
-        //closeTarget = shortTarget;
-
-
-
         Collider[] cols = Physics.OverlapSphere(transform.position, enemyCheakRange, attackLayer);
 
         if (cols.Length > 0)
@@ -141,11 +121,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if (Vector3.Distance(transform.position, closeTarget.position) > enemyCheakRange)
-            {
-                closeTarget = null;
-                nav.SetDestination(navPos.position);
-            }
+            nav.SetDestination(navPos.position);
         }
     }
 
