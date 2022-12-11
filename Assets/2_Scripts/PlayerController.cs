@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     Animator     anim;
     NavMeshAgent nav;
     Rigidbody rigid;
+    CapsuleCollider col;
 
     // Object
     [Header("----------------------- OBJ -----------------------")]
@@ -59,6 +60,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform respawnPostion;  // 부활 포지션
     [SerializeField] GameObject body;           // 플레이어 바디
     [SerializeField] GameObject state;          // 플레이어 머리위 스텟 표시창
+    [SerializeField] LayerMask deadLayer;       // 죽은 뒤 레이어
+    [SerializeField] LayerMask playerLayer;     // 원래 레이어
     // Skill
     [Header("----------------------- SKILL -----------------------")]
     [SerializeField] GameObject[] coolTimeGroup;
@@ -108,6 +111,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
         rigid = GetComponent<Rigidbody>();
+        col = GetComponent<CapsuleCollider>();
     }
 
     private void Start()
@@ -299,6 +303,9 @@ public class PlayerController : MonoBehaviour
     {
         respawnUI.SetActive(true);
         state.SetActive(false);
+        col.enabled = false;
+
+        // 레이어 변경
 
         for (int i = deadRespawnTime; i > 0; i--)
         {
@@ -309,6 +316,7 @@ public class PlayerController : MonoBehaviour
 
         respawnUI.SetActive(false);
 
+        gameObject.layer = playerLayer;
         curHp = maxHp;
         hpGage.value = curHp;
         canvasHpGage.value = curHp;
@@ -324,14 +332,31 @@ public class PlayerController : MonoBehaviour
 
         body.SetActive(true);
         state.SetActive(true);
+        col.enabled = true;
 
         isDead = false;
     }
 
-    // Skill
-    #region 스킬
+    public void GetHeal(int healHp)
+    {
+        curHp += healHp;
+        hpGage.value += healHp;
+        canvasHpGage.value += healHp;
+        canvasHpText.text = maxHp + " / " + (curHp <= 0 ? "0" : curHp);
 
-    void SkillQ()
+        if (curHp > maxHp)
+        {
+            curHp = maxHp;
+            hpGage.value = maxHp;
+            canvasHpGage.value += maxHp;
+            canvasHpText.text = maxHp + " / " + (curHp <= 0 ? "0" : curHp);
+        }
+    }
+
+        // Skill
+        #region 스킬
+
+        void SkillQ()
     {
         if (Input.GetKeyDown(KeyCode.Q) && !isAxeThrow && !isAttack && !isQcool && !isSkill)
         {

@@ -1,4 +1,4 @@
-using System.Collections;
+        using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -59,25 +59,6 @@ public class Tower : MonoBehaviour
 
     void EnemySearch() // 주변의 적 탐색
     {
-        //Collider[] cols = Physics.OverlapSphere(transform.position, attackCheakRange, attackLayer);
-        //Transform shortTarget = null;
-
-        //if (cols.Length > 0)
-        //{
-        //    float shortDistance = Mathf.Infinity;
-        //    foreach (Collider col in cols)
-        //    {
-        //        float distance = Vector3.SqrMagnitude(transform.position - col.transform.position);
-        //        if (shortDistance > distance)
-        //        {
-        //            shortDistance = distance;
-        //            shortTarget = col.transform;
-        //        }
-        //    }
-        //}
-
-        //closeTarget = shortTarget;
-
 
         Collider[] cols = Physics.OverlapSphere(transform.position, attackCheakRange, attackLayer);
 
@@ -203,7 +184,7 @@ public class Tower : MonoBehaviour
         gameObject.SetActive(false);
         brokenTower.SetActive(true);
         Destroy(brokenTower, 5f);
-
+        gameObject.layer = 8;
         // 포탑 파괴 안내 문자
         UI_Manager.Instance.ShowCoutionText(towerType == TowerType.Blue ? 2 : 3);
 

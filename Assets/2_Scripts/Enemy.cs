@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     Renderer       render;
     Camera         cam;
     Rigidbody      rigid;
+    SphereCollider col;
 
     public Transform navPos; // 네비게이션 포지션
 
@@ -70,6 +71,7 @@ public class Enemy : MonoBehaviour
         nav    = GetComponent<NavMeshAgent>();
         render = GetComponentInChildren<Renderer>();
         rigid  = GetComponent<Rigidbody>();
+        col = GetComponent<SphereCollider>();
     }
         
     private void Start()
@@ -123,6 +125,8 @@ public class Enemy : MonoBehaviour
         {
             nav.SetDestination(navPos.position);
         }
+
+
     }
 
     void Move()
@@ -225,6 +229,8 @@ public class Enemy : MonoBehaviour
         rigid.isKinematic = true;
 
         transform.position = new Vector3(transform.position.x, 0.083f, transform.position.z);
+
+        col.enabled = false;
 
         // 충돌 비활성화   
         this.gameObject.layer = 7;

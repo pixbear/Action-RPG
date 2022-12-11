@@ -39,21 +39,11 @@ public class HealPackGenerator : MonoBehaviour
             }
             else
             {
-                // Èú ¾Ö´Ï¸ÅÀÌ¼Ç ?
-
-                player.curHp += healHp;
-                player.hpGage.value += healHp;
-
-                if (player.curHp > player.maxHp)
-                {
-                    player.curHp = player.maxHp;
-                    player.hpGage.value = player.maxHp;
-                }
+                player.GetHeal(healHp);
 
                 // ÈúÆÑ ¼û±â±â / ÄğÅ¸ÀÓ ½ÃÀÛ
                 healPack.SetActive(false);
                 healPackCanvas.SetActive(true);
-
                 StartCoroutine("HealPackGenRoutien");
             }
         }

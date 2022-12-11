@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.5649006, g: 0.63563985, b: 0.723937, a: 1}
+  m_IndirectSpecularColor: {r: 0.5649007, g: 0.6356403, b: 0.72393775, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3954,7 +3954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healHp: 100
-  healPackCoolTime: 30
+  healPackCoolTime: 5
   healPack: {fileID: 7262178607705073131}
   healPackCanvas: {fileID: 625222806}
   coolTimeText: {fileID: 1492383953}
@@ -5132,15 +5132,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 483918910038387717, guid: 2111d2eee3769bf45925d85467473212, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 483918910038387717, guid: 2111d2eee3769bf45925d85467473212, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 483918910038387717, guid: 2111d2eee3769bf45925d85467473212, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 483918910038387717, guid: 2111d2eee3769bf45925d85467473212, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -5405,7 +5405,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c80946a39618c584bb545bc91816de52, type: 3}
+    m_Font: {fileID: 12800000, guid: b20697eff30e1d44e8d3e4ed5f76f05c, type: 3}
     m_FontSize: 106
     m_FontStyle: 0
     m_BestFit: 0
@@ -5695,8 +5695,8 @@ MonoBehaviour:
   minPrefabBlue: {fileID: 3407808105405834214, guid: 77cf91b9c2ef51d4d95d96dea669c591, type: 3}
   minGenPosRed: {fileID: 850677079}
   minGenPosBlue: {fileID: 1654137219}
-  startGenTime: 10
-  minionGenTime: 30
+  startGenTime: 333
+  minionGenTime: 333
 --- !u!4 &869405324
 Transform:
   m_ObjectHideFlags: 0
@@ -6202,7 +6202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99584955fbbd613488cd1014140776cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorImg: {fileID: 2800000, guid: a274a12eb5ead3747be64b9fdaf54288, type: 3}
+  cursorImg: {fileID: 2800000, guid: 33ee14b04dcf4c041aa2992d4d86cf96, type: 3}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6830,7 +6830,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 422}
+  m_AnchoredPosition: {x: 0, y: 371.41}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1037203032
@@ -6854,8 +6854,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: cc57aeef5c8ef9441a6c5e1e677a2daa, type: 3}
-    m_FontSize: 77
+    m_Font: {fileID: 12800000, guid: 32303625a7928bf4680faee694644d07, type: 3}
+    m_FontSize: 120
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -6866,7 +6866,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 999
+  m_Text: 10
 --- !u!222 &1037203033
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8481,7 +8481,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c80946a39618c584bb545bc91816de52, type: 3}
+    m_Font: {fileID: 12800000, guid: b20697eff30e1d44e8d3e4ed5f76f05c, type: 3}
     m_FontSize: 106
     m_FontStyle: 0
     m_BestFit: 0
@@ -9045,7 +9045,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c80946a39618c584bb545bc91816de52, type: 3}
+    m_Font: {fileID: 12800000, guid: b20697eff30e1d44e8d3e4ed5f76f05c, type: 3}
     m_FontSize: 106
     m_FontStyle: 0
     m_BestFit: 0
@@ -9732,7 +9732,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c80946a39618c584bb545bc91816de52, type: 3}
+    m_Font: {fileID: 12800000, guid: b20697eff30e1d44e8d3e4ed5f76f05c, type: 3}
     m_FontSize: 106
     m_FontStyle: 0
     m_BestFit: 0
@@ -9886,8 +9886,8 @@ MonoBehaviour:
     m_Bits: 2056
   closeTarget: {fileID: 0}
   attackTarget: {fileID: 0}
-  maxHp: 1000
-  curHp: 1000
+  maxHp: 100
+  curHp: 100
   showDamage: {fileID: 7484482314412720451, guid: abae98b05388bd643a887430b6d7c1bd, type: 3}
   hpGageBar: {fileID: 733079833}
   hpGage: {fileID: 1697653912}
@@ -10047,7 +10047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healHp: 100
-  healPackCoolTime: 30
+  healPackCoolTime: 5
   healPack: {fileID: 7262178609303815212}
   healPackCanvas: {fileID: 2086679877}
   coolTimeText: {fileID: 1408875048}
@@ -10149,7 +10149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healHp: 100
-  healPackCoolTime: 30
+  healPackCoolTime: 5
   healPack: {fileID: 7262178608028525869}
   healPackCanvas: {fileID: 317683305}
   coolTimeText: {fileID: 1327733770}
@@ -10315,7 +10315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healHp: 100
-  healPackCoolTime: 30
+  healPackCoolTime: 5
   healPack: {fileID: 7262178608519807012}
   healPackCanvas: {fileID: 1178946237}
   coolTimeText: {fileID: 804269333}
@@ -10978,9 +10978,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1000
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11875,7 +11875,7 @@ MonoBehaviour:
   hpGageBar: {fileID: 1459099087}
   hpGage: {fileID: 1141103383}
   curHp: 0
-  maxHp: 200
+  maxHp: 100
   canvasHpGage: {fileID: 1380339594}
   canvasHpText: {fileID: 1817841882}
   showDamage: {fileID: 7484482314412720451, guid: abae98b05388bd643a887430b6d7c1bd, type: 3}
@@ -11886,6 +11886,12 @@ MonoBehaviour:
   respawnPostion: {fileID: 1869813597}
   body: {fileID: 1603838811}
   state: {fileID: 1459099087}
+  deadLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
   coolTimeGroup:
   - {fileID: 1879703002}
   - {fileID: 1887633476}
