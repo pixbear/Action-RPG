@@ -1,13 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-
 
 public class UI_Manager : MonoBehaviour
 {
-    // ½Ì±ÛÅæ
+    // ï¿½Ì±ï¿½ï¿½ï¿½
     private static UI_Manager instance;
     public static UI_Manager Instance
     {
@@ -22,10 +19,10 @@ public class UI_Manager : MonoBehaviour
     }
 
 
-    // ¾È³»¹®ÀÚ UI
-    [SerializeField] Text CoutionText;  // ¾È³» ÅØ½ºÆ®
-    [SerializeField] float fadeSpeed;   // ¾È³» ¹®ÀÚ ÆäÀÌµå ½ºÇÇµå
-    [SerializeField] float textTime;    // ¾È³» ¹®Áö Áö¼Ó ½Ã°£
+    // ï¿½È³ï¿½ï¿½ï¿½ï¿½ï¿½ UI
+    [SerializeField] Text CoutionText;  
+    [SerializeField] float fadeSpeed;  
+    [SerializeField] float textTime;    
  
     float maxFade = 0.8f;
     float minFade = 0.0f;
@@ -35,7 +32,7 @@ public class UI_Manager : MonoBehaviour
 
     private void Awake()
     {
-        #region ½Ì±ÛÅæ
+        #region ï¿½Ì±ï¿½ï¿½ï¿½
         if (instance == null)
         {
             instance = this;
@@ -50,7 +47,6 @@ public class UI_Manager : MonoBehaviour
         Application.targetFrameRate = 60;
     }
 
-    // ¾È³» ¹®ÀÚ (Ãß°¡ ¼öÁ¤ °¡´É)
     public void ShowCoutionText(int _num)
     {
         string showText = null;
@@ -58,13 +54,13 @@ public class UI_Manager : MonoBehaviour
         switch (_num)
         {
             case 1:
-                showText = "- ¹Ì´Ï¾ðµéÀÌ »ý¼º µÇ¾ú½À´Ï´Ù -";
+                showText = "- Minions have spawned -";
                 break;
             case 2:
-                showText = "- Àû Æ÷Å¾ÀÌ ÆÄ±« µÇ¾ú½À´Ï´Ù -";
+                showText = "- The blue team tower has been destroyed -";
                 break;
             case 3:
-                showText = "- ¾Æ±º Æ÷Å¾ÀÌ ÆÄ±« µÇ¾ú½À´Ï´Ù -";
+                showText = "- The red team tower has been destroyed -";
                 break;
         }
         CoutionText.text = showText;
@@ -72,7 +68,6 @@ public class UI_Manager : MonoBehaviour
         StartCoroutine(FadeRoutien());
     }
 
-    // ¾È³» ¹®ÀÚ ÆäÀÌµå
     IEnumerator FadeRoutien()
     {
         CoutionText.gameObject.SetActive(true);

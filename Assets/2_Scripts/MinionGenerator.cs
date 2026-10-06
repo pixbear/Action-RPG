@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class MinionGenerator : MonoBehaviour
 {
@@ -11,7 +9,7 @@ public class MinionGenerator : MonoBehaviour
     [SerializeField] Transform minGenPosBlue;
 
     [SerializeField] int startGenTime;
-    [SerializeField] int minionGenTime; // ¹Ì´Ï¾ð »ý¼º ÁÖ±â Å¸ÀÓ
+    [SerializeField] int minionGenTime; // ï¿½Ì´Ï¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½ Å¸ï¿½ï¿½
 
 
 
@@ -26,12 +24,10 @@ public class MinionGenerator : MonoBehaviour
         StartCoroutine(GenMinionRoutien());
     }
 
-    IEnumerator GenMinionRoutien() // ¹Ì´Ï¾ð »ý¼º
+    IEnumerator GenMinionRoutien() 
     {
-        // »ý¼º ¾Ë¸² ÅØ½ºÆ® »ý¼º
         UI_Manager.Instance.ShowCoutionText(1);
 
-        // ½ÃÀÛ½Ã ¹Ì´Ï¾ð 4¸¶¸® »ý¼º
         Instantiate(minPrefabRed, minGenPosRed.position, minGenPosRed.rotation);
         Instantiate(minPrefabBlue, minGenPosBlue.position, minGenPosBlue.rotation);
         yield return new WaitForSeconds(2f);
@@ -44,8 +40,6 @@ public class MinionGenerator : MonoBehaviour
         Instantiate(minPrefabRed, minGenPosRed.position, minGenPosRed.rotation);
         Instantiate(minPrefabBlue, minGenPosBlue.position, minGenPosBlue.rotation);
 
-
-        // Á¨ Å¸ÀÓ ´ë±â ÈÄ ¹Ì´Ï¾ð »ý¼º
         yield return new WaitForSeconds(minionGenTime);
         StartCoroutine(GenMinionRoutien());
     }

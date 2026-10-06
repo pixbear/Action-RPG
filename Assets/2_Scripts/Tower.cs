@@ -5,36 +5,36 @@ using UnityEngine.UI;
 
 public class Tower : MonoBehaviour
 {
-    // Å¸¿ö Å¸ÀÔ
+    // Å¸ï¿½ï¿½ Å¸ï¿½ï¿½
     enum TowerType { Red, Blue };
     [SerializeField] TowerType towerType;
 
 
-    [SerializeField] GameObject brokenTower;     // Å¸¿ö ÆÄ±«µÈ ÈÄ ºÎ¼­Áø Å¸¿ö
-    [SerializeField] GameObject attackRangeLine; // Å¸¿ö °ø°Ý¹üÀ§ »¡°£ Ç¥½Ã ¶óÀÎ
-    [SerializeField] GameObject towerBullet;     // Å¸¿ö °ø°Ý ¹ß»çÃ¼ ÇÁ¸®Æé
-    [SerializeField] Transform player;           // ÇÃ·¹ÀÌ¾î À§Ä¡
-    [SerializeField] Transform firePos;          // °ø°Ý ¹ß»ç À§Ä¡
-    [SerializeField] Camera cam;                 // Ä«¸Þ¶ó
+    [SerializeField] GameObject brokenTower;     // Å¸ï¿½ï¿½ ï¿½Ä±ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Î¼ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
+    [SerializeField] GameObject attackRangeLine; // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    [SerializeField] GameObject towerBullet;     // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [SerializeField] Transform player;           // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Ä¡
+    [SerializeField] Transform firePos;          // ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½Ä¡
+    [SerializeField] Camera cam;                 // Ä«ï¿½Þ¶ï¿½
      
 
     // Attack
-                     float curAttackRate;     // ÇöÀç °ø°Ý ¼Óµµ
-    [SerializeField] float maxAttackRate;     // ÃÖ´ë °ø°Ý ¼Óµµ
-    [SerializeField] float bulletSpeed;       // ¹ß»çÃ¼ ½ºÇÇµå
-    [SerializeField] float attackCheakRange;  // Àû Ã¼Å© ¹üÀ§
-    [SerializeField] LayerMask attackLayer;   // °ø°Ý ·¹ÀÌ¾î
-    public Transform closeTarget = null;      // °¡±î¿î Å¸°Ù
-    public Transform attackTarget = null;     // °ø°ÝÇÒ Å¸°Ù
+                     float curAttackRate;     // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
+    [SerializeField] float maxAttackRate;     // ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
+    [SerializeField] float bulletSpeed;       // ï¿½ß»ï¿½Ã¼ ï¿½ï¿½ï¿½Çµï¿½
+    [SerializeField] float attackCheakRange;  // ï¿½ï¿½ Ã¼Å© ï¿½ï¿½ï¿½ï¿½
+    [SerializeField] LayerMask attackLayer;   // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½
+    public Transform closeTarget = null;      // ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
+    public Transform attackTarget = null;     // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
 
     // Hp
-    [SerializeField] int maxHp;               // ÃÖ´ë Ã¼·Â
-    [SerializeField] int curHp;               // ÇöÀç Ã¼·Â
-    [SerializeField] GameObject showDamage;   // Ãâ·Â µ¥¹ÌÁö
-    [SerializeField] GameObject hpGageBar;    // Ã¼·Â °ÔÀÌÁö Äµ¹ö½º
-    [SerializeField] Slider hpGage;           // Ã¼·Â °ÔÀÌÁö ¹Ù
+    [SerializeField] int maxHp;               // ï¿½Ö´ï¿½ Ã¼ï¿½ï¿½
+    [SerializeField] int curHp;               // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½
+    [SerializeField] GameObject showDamage;   // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [SerializeField] GameObject hpGageBar;    // Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Äµï¿½ï¿½ï¿½ï¿½
+    [SerializeField] Slider hpGage;           // Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 
-    GameObject bulletInstance;                // ¹ß»çµÈ ¹ß»çÃ¼
+    GameObject bulletInstance;                // ï¿½ß»ï¿½ï¿½ ï¿½ß»ï¿½Ã¼
 
     private void Start()
     {
@@ -46,7 +46,7 @@ public class Tower : MonoBehaviour
 
     private void Update()
     {
-        TowerAttackRangeRedLine(); // °ø°Ý ¹üÀ§ ·¹µå¶óÀÎ È°/ºñÈ°¼ºÈ­
+        TowerAttackRangeRedLine(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È°/ï¿½ï¿½È°ï¿½ï¿½È­
         BulletAttack();
     }
 
@@ -57,7 +57,7 @@ public class Tower : MonoBehaviour
         BulletFollowTarget();
     }
 
-    void EnemySearch() // ÁÖº¯ÀÇ Àû Å½»ö
+    void EnemySearch() // ï¿½Öºï¿½ï¿½ï¿½ ï¿½ï¿½ Å½ï¿½ï¿½
     {
 
         Collider[] cols = Physics.OverlapSphere(transform.position, attackCheakRange, attackLayer);
@@ -173,7 +173,7 @@ public class Tower : MonoBehaviour
         showDmgInstance.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-1f, 1f), 3, 0), ForceMode.Impulse);
         Destroy(showDmgInstance, 0.8f);
 
-        if (curHp <= 0) // ÇÇ°¡ 0ÀÌ¸é ´ÙÀÌ
+        if (curHp <= 0) // ï¿½Ç°ï¿½ 0ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
         {
             Die();
         }
@@ -185,9 +185,6 @@ public class Tower : MonoBehaviour
         brokenTower.SetActive(true);
         Destroy(brokenTower, 5f);
         gameObject.layer = 8;
-        // Æ÷Å¾ ÆÄ±« ¾È³» ¹®ÀÚ
         UI_Manager.Instance.ShowCoutionText(towerType == TowerType.Blue ? 2 : 3);
-
-        // ÆÄ±« ±«´Â ¼Ò¸® ?
     }
 }
