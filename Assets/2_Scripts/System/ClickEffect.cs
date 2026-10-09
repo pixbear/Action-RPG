@@ -1,0 +1,9 @@
+using UnityEngine;
+
+public class ClickEffect : MonoBehaviour
+{
+    private void Awake()
+    {
+        Destroy(gameObject, 1f);
+    }
+}
