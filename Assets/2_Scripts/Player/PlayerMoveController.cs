@@ -1,0 +1,83 @@
+using PB.MANAGER;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class PlayerMoveController : MonoBehaviour
+{
+    private float moveSpeed => player.Data.MoveSpeed;
+    private float turnSpeed => moveSpeed * 3f;
+
+    Vector3 movePoint;
+    Vector3 moveDir;
+    Player player;
+
+    private NavMeshAgent nav;
+
+    private void Awake()
+    {
+        nav = GetComponent<NavMeshAgent>();
+        player = GetComponent<Player>();
+    }
+
+    private void Start()
+    {
+        nav.updateRotation = false;
+        nav.speed = moveSpeed;
+    }
+
+    private void Update()
+    {
+        SetMovePoint();
+        TryMove();
+        TryStop();
+    }
+
+    private void SetMovePoint()
+    {
+        if (Input.GetMouseButton(1)) // 1 = Mouse Right Button
+        {
+            RaycastHit hit;
+            LayerMask layer = LayerMask.GetMask("Ground");
+
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, layer))
+            {
+                movePoint = hit.point;
+                nav.SetDestination(movePoint);
+                ShowClickEffect(movePoint);
+            }
+        }
+    }
+
+    private void TryMove()
+    {
+        bool isMoving = moveDir.sqrMagnitude > 0.01f;
+        moveDir = new Vector3(movePoint.x, transform.position.y, movePoint.z) - transform.position;
+        if (isMoving)
+        {
+            player.SetState(Player.State.Move);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(moveDir), turnSpeed * Time.deltaTime);
+        }
+        else
+        {
+            player.SetState(Player.State.Idle);
+        }
+    }
+
+    private void TryStop()
+    {
+        if (Input.GetKeyDown(KeyCode.S)) Stop();
+    }
+
+    public void Stop()
+    {
+        nav.ResetPath(); // Stop the player's movement
+        player.SetState(Player.State.Idle);
+    }
+
+    private void ShowClickEffect(Vector3 position)
+    {
+        var pos = position + Vector3.up * 0.5f;
+        var effect = PObjectPoolManager.Instance.Get("ClickEffect", pos);
+        PObjectPoolManager.Instance.ReleaseAfterDelay("ClickEffect", effect, 1f);
+    }
+}

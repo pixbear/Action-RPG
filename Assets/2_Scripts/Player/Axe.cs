@@ -2,37 +2,36 @@ using UnityEngine;
 
 public class Axe : MonoBehaviour
 {
-    [SerializeField] float axeMoveSpeed; 
-    [SerializeField] float axeRotSpeed;  
-    [SerializeField] int QSkillDamage;   
-    [SerializeField] ParticleSystem qEffect;
+    [SerializeField] int damage; // 10
+    [SerializeField] float moveSpeed; // 5
+    [SerializeField] float rotSpeed; // 1000
+    [SerializeField] float skillDuration; // 2
+    [SerializeField] ParticleSystem effect;
+
+    private Vector3 targetDir;
 
     private void Update()
     {
-        transform.Rotate(-Vector3.forward * axeRotSpeed * Time.deltaTime);
+        transform.Rotate(-Vector3.forward * rotSpeed * Time.deltaTime);
+        transform.position += targetDir * moveSpeed * Time.deltaTime;
     }
 
-    public void ThrowMove(Vector3 _dir)
+    public void SetDir(Vector3 dir)
     {
-        transform.position += _dir.normalized * axeMoveSpeed * Time.deltaTime;
-    }
-
-    public void ThrowBack(Transform _pos)
-    {
-        transform.position = Vector3.MoveTowards(transform.position, _pos.position + Vector3.up * 1, axeMoveSpeed * Time.deltaTime);
+        targetDir = dir;
     }
 
     public void DestroySelf()
     {
-        Destroy(gameObject);
+        transform.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("EnemyBlue"))
         {
-            other.GetComponent<Enemy>().TakeDamage(QSkillDamage);
-            qEffect.Play();
+            other.GetComponent<Enemy>().TakeDamage(damage);
+            effect.Play();
         }
     }
 }

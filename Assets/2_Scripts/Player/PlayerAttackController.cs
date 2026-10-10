@@ -1,0 +1,36 @@
+using UnityEngine;
+
+public class PlayerAttackController : MonoBehaviour
+{  
+    [SerializeField] GameObject attackCollision;
+    private Player player;
+    private PlayerMoveController playerController;
+   
+    private void Awake()
+    {
+        player = GetComponent<Player>();
+        playerController = GetComponent<PlayerMoveController>();
+    }
+
+    private void Update()
+    {
+        TryAttack();
+    }
+
+    private void TryAttack() 
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            player.SetState(Player.State.Attack);
+            playerController.Stop();
+        }
+
+        // var animStateInfo = animController.Anim.GetCurrentAnimatorStateInfo(0);
+        // bool isAttack = animStateInfo.IsName("Attack Downward") || animStateInfo.IsName("Attack Horizontal");
+
+        // if (isAttack && animStateInfo.normalizedTime > 1.0f)
+        // {
+        //     player.SetState(Player.State.Idle);
+        // }
+    }
+}

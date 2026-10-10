@@ -1,65 +1,53 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealPackGenerator : MonoBehaviour
-{          
-    float rotSpeed = 30f;                         // ÈúÆÑ È¸Àü ¼Óµµ
+{
+    [SerializeField] int healHp;
+    [SerializeField] int healPackCoolTime;
 
-    [SerializeField] int healHp;                  // Èú ·®
-    [SerializeField] int healPackCoolTime;        // ÄðÅ¸ÀÓ    
-    [SerializeField] GameObject healPack;         // ÈúÆÑ
-    [SerializeField] GameObject healPackCanvas;   // ÈúÆÑ ÄðÅ¸ÀÓ Äµ¹ö½º
-    [SerializeField] Text coolTimeText;           // ÄðÅ¸ÀÓ ÅØ½ºÆ®
+    [SerializeField] GameObject healPack;
+    [SerializeField] Text coolTimeText;
 
+    private bool isCooltime;
+    private float rotSpeed = 30f;
 
-
-    private void Start()
-    {
-        coolTimeText.text = healPackCoolTime.ToString();
-    }
 
     private void Update()
     {
         healPack.transform.Rotate(Vector3.up * rotSpeed * Time.deltaTime);
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
+        if (isCooltime) return;
+
         if (other.CompareTag("Player"))
         {
-            PlayerController player = other.GetComponent<PlayerController>();
+            PlayerHpController playerHp = other.GetComponent<PlayerHpController>();
 
-            // ÇÃ·¹ÀÌ¾î Ã¼·Â Áõ°¡
-            if (player.curHp == player.maxHp)
+            if (playerHp.GetHeal(healHp))
             {
-                return;
-            }
-            else
-            {
-                player.GetHeal(healHp);
-
-                // ÈúÆÑ ¼û±â±â / ÄðÅ¸ÀÓ ½ÃÀÛ
-                healPack.SetActive(false);
-                healPackCanvas.SetActive(true);
-                StartCoroutine("HealPackGenRoutien");
+                StartCoroutine(HealPackGenRoutien());
             }
         }
     }
 
     IEnumerator HealPackGenRoutien()
     {
+        isCooltime = true;
+        healPack.SetActive(false);
+        coolTimeText.gameObject.SetActive(true);
+
         for (int i = healPackCoolTime; i > 0; i--)
-        {            
+        {
             coolTimeText.text = i.ToString();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSecondsRealtime(1f);
         }
 
-        //yield return new WaitForSeconds(1f);
-
+        isCooltime = false;
         healPack.SetActive(true);
-        healPackCanvas.SetActive(false);
+        coolTimeText.gameObject.SetActive(false);
     }
 }

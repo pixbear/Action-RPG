@@ -1,6 +1,7 @@
 using PB.SYSTEM;
 using PB.UTILS;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -114,6 +115,17 @@ namespace PB.MANAGER
 
             obj.SetActive(false);
             poolsDict[key].Enqueue(obj);
+        }
+
+        public void ReleaseAfterDelay(string key, GameObject obj, float delay)
+        {
+            StartCoroutine(ReleaseAfterDelayCoroutine(key, obj, delay));
+        }
+
+        private IEnumerator ReleaseAfterDelayCoroutine(string key, GameObject obj, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            Release(key, obj);
         }
         
         public void ReleaseAll(string key)
