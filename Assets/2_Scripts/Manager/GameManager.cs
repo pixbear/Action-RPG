@@ -1,6 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum TeamType
+{
+    Red,
+    Blue
+}
+
+public enum State
+{
+    Idle,
+    Move,
+    Attack,
+    Dead
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }

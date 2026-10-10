@@ -16,7 +16,7 @@ public class CollisionAttack : MonoBehaviour
         if (other.CompareTag("EnemyBlue"))
         {
             int _damage = Random.Range(20, 25);
-            other.GetComponent<Enemy>().TakeDamage(_damage);
+            other.GetComponent<EnemyHp>().TakeDamage(_damage);
         }
 
         if (other.CompareTag("TowerBlue"))

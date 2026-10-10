@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public enum State
-    {
-        Idle,
-        Move,
-        Attack,
-        Dead
-    }
-
     private State curState;
     public State CurState => curState;
 
@@ -21,8 +13,7 @@ public class Player : MonoBehaviour
     private CapsuleCollider col;
 
     public Action onRespawn;
-    public Action<State> onStateChange;
-    public Action onDie;
+    public Action<State> onStateChanged;
 
     private void Awake()
     {
@@ -32,7 +23,7 @@ public class Player : MonoBehaviour
     public void SetState(State newState)
     {
         curState = newState;
-        onStateChange?.Invoke(newState);
+        onStateChanged?.Invoke(newState);
     }
 
     public void SetStatus(PlayerDataSO newStatus)
@@ -43,7 +34,6 @@ public class Player : MonoBehaviour
     public void Die()
     {
         SetState(State.Dead);
-        onDie?.Invoke();
         UIManager.Instance.ShowDeadUI(Data.RespawnTime);
         gameObject.layer = LayerMask.NameToLayer("PlayerDead");
         col.enabled = false;

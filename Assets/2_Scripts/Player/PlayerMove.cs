@@ -27,12 +27,20 @@ public class PlayerMove : MonoBehaviour
 
     private void OnEnable()
     {
-        player.onDie += Stop;
+        player.onStateChanged += (state) =>
+        {
+            if (state == State.Dead) Stop();
+            if (state == State.Attack) Stop();
+        };
     }
 
     private void OnDisable()
     {
-        player.onDie -= Stop;
+        player.onStateChanged -= (state) =>
+        {
+            if (state == State.Dead) Stop();
+            if (state == State.Attack) Stop();
+        };
     }
 
     private void Update()
@@ -64,12 +72,12 @@ public class PlayerMove : MonoBehaviour
         bool isMoving = moveDir.sqrMagnitude > 0.01f;
         if (isMoving)
         {
-            player.SetState(Player.State.Move);
+            player.SetState(State.Move);
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(moveDir), turnSpeed * Time.deltaTime);
         }
         else
         {
-            player.SetState(Player.State.Idle);
+            player.SetState(State.Idle);
         }
     }
 
@@ -81,7 +89,7 @@ public class PlayerMove : MonoBehaviour
     public void Stop()
     {
         nav.ResetPath(); // Stop the player's movement
-        player.SetState(Player.State.Idle);
+        player.SetState(State.Idle);
     }
 
     private void ShowClickEffect(Vector3 position)

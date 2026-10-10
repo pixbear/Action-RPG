@@ -14,13 +14,12 @@ public class MinionColAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // ���� �̴Ͼ�
         if (minionType == MinionType.Red)
         {
             if (other.CompareTag("EnemyBlue"))
             {
                 int _damage = Random.Range(10, 15);
-                other.GetComponent<Enemy>().TakeDamage(_damage);
+                other.GetComponent<EnemyHp>().TakeDamage(_damage);
             }
 
             if (other.CompareTag("TowerBlue"))
@@ -30,7 +29,6 @@ public class MinionColAttack : MonoBehaviour
             }
         }
 
-        // ���� �̴Ͼ�
         if (minionType == MinionType.Blue)
         {
             if (other.CompareTag("Player"))
@@ -42,7 +40,7 @@ public class MinionColAttack : MonoBehaviour
             if (other.CompareTag("EnemyRed"))
             {
                 int _damage = Random.Range(10, 15);
-                other.GetComponent<Enemy>().TakeDamage(_damage);
+                other.GetComponent<EnemyHp>().TakeDamage(_damage);
             }
 
             if (other.CompareTag("TowerRed"))

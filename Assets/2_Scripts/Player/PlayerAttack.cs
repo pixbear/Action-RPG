@@ -4,12 +4,10 @@ public class PlayerAttack : MonoBehaviour
 {  
     [SerializeField] GameObject attackCollision;
     private Player player;
-    private PlayerMove playerController;
    
     private void Awake()
     {
         player = GetComponent<Player>();
-        playerController = GetComponent<PlayerMove>();
     }
 
     private void Update()
@@ -21,8 +19,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            player.SetState(Player.State.Attack);
-            playerController.Stop();
+            player.SetState(State.Attack);
         }
 
         // var animStateInfo = animController.Anim.GetCurrentAnimatorStateInfo(0);

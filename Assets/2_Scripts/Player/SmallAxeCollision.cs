@@ -9,7 +9,7 @@ public class SmallAxeCollision : MonoBehaviour
         if (other.CompareTag("EnemyBlue"))
         {
             int _dmg = Random.Range(3, 5);
-            other.GetComponent<Enemy>().TakeDamage(_dmg);
+            other.GetComponent<EnemyHp>().TakeDamage(_dmg);
         }
     }
 }

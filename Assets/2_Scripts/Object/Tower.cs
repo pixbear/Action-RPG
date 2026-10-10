@@ -126,12 +126,12 @@ public class Tower : MonoBehaviour
                 else if (attackTarget.CompareTag("EnemyRed"))
                 {
                     int _damage = Random.Range(25, 30);
-                    attackTarget.GetComponent<Enemy>().TakeDamage(_damage);
+                    attackTarget.GetComponent<EnemyHp>().TakeDamage(_damage);
                 }
                 else if (attackTarget.CompareTag("EnemyBlue"))
                 {
                     int _damage = Random.Range(25, 30);
-                    attackTarget.GetComponent<Enemy>().TakeDamage(_damage);
+                    attackTarget.GetComponent<EnemyHp>().TakeDamage(_damage);
                 }
 
                 Destroy(bulletInstance);

@@ -1,26 +1,25 @@
+using System;
 using UnityEngine;
 
-public class PlayerAnimation : MonoBehaviour
+public class EnemyAnimation : MonoBehaviour
 {
+    private Enemy enemy;
     private Animator anim;
-    private Player player;
-
-
 
     private void Awake()
-    {
+    {        
+        enemy = GetComponent<Enemy>();
         anim = GetComponent<Animator>();
-        player = GetComponent<Player>();
     }
 
     private void OnEnable()
     {
-        player.onStateChanged += Set;
+        enemy.onStateChanged += Set;
     }
 
     private void OnDisable()
     {
-        player.onStateChanged -= Set;
+        enemy.onStateChanged -= Set;
     }
 
     public void Set(State state)
@@ -40,10 +39,5 @@ public class PlayerAnimation : MonoBehaviour
                 anim.SetTrigger("Dead");
                 break;
         }
-    }
-
-    public void DoSkillAnimation(SkillBase.KeyType type)
-    {
-        anim.SetTrigger(string.Format("{0}Skill", type.ToString()));
     }
 }

@@ -12,8 +12,13 @@ public class PlayerHp : MonoBehaviour
     private void Awake()
     {
         player = GetComponent<Player>();
+    }
+
+    private void Start()
+    {
         maxHp = player.Data.MaxHp;
         curHp = maxHp;
+        UpdateUI();
     }
 
     private void OnEnable()
@@ -26,11 +31,6 @@ public class PlayerHp : MonoBehaviour
         player.onRespawn -= SetFullHp;
     }
 
-    private void Start()
-    {
-        UpdateUI();
-    }
-
     public void TakeDamage(int damage) 
     {
         curHp -= damage;
@@ -40,11 +40,11 @@ public class PlayerHp : MonoBehaviour
         dmgTxt.Set(damage);
 
         if (curHp <= 0) player.Die();
-    }
+    }                   
     
     public bool GetHeal(int healHp)
     {
-        if ( player.CurState == Player.State.Dead || IsFullHp()) return false;
+        if ( player.CurState == State.Dead || IsFullHp()) return false;
     
         var healAmount = Mathf.Min(healHp, maxHp - curHp);
         curHp += healAmount;

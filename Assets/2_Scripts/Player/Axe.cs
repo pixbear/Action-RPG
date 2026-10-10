@@ -30,7 +30,7 @@ public class Axe : MonoBehaviour
     {
         if (other.CompareTag("EnemyBlue"))
         {
-            other.GetComponent<Enemy>().TakeDamage(damage);
+            other.GetComponent<EnemyHp>().TakeDamage(damage);
             effect.Play();
         }
     }

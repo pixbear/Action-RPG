@@ -57,8 +57,8 @@ public class SkillBase : MonoBehaviour
     public void TryUseSkill()
     {
         if (isCooltime) return;
-        if (player.CurState == Player.State.Attack) return;
-        if (player.CurState == Player.State.Dead) return;
+        if (player.CurState == State.Attack) return;
+        if (player.CurState == State.Dead) return;
         OnSkillUsed();
     }
 
