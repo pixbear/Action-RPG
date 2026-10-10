@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0047dc40aba381048986b8f1854739eb, type: 3}
   m_Name: Warrior
   m_EditorClassIdentifier: 
-  Level: 0
-  MaxHp: 0
-  MaxMp: 0
-  AttackPower: 0
-  AttackRange: 0
-  AttackSpeed: 0
-  Defense: 0
-  MoveSpeed: 0
-  RespawnTime: 0
-  QSkill: {fileID: 0}
-  WSkill: {fileID: 0}
-  ESkill: {fileID: 0}
-  RSkill: {fileID: 0}
-  DSkill: {fileID: 0}
-  FSkill: {fileID: 0}
+  Level: 1
+  MaxHp: 500
+  MaxMp: 200
+  AttackPower: 5
+  AttackRange: 5
+  AttackSpeed: 5
+  Defense: 5
+  MoveSpeed: 4
+  RespawnTime: 30
+  QSkill: {fileID: 11400000, guid: 1bdfb5a85f80fb742b6c45fd237c6092, type: 2}
+  WSkill: {fileID: 11400000, guid: 2412bb5c322c1094182420789d6d80ef, type: 2}
+  ESkill: {fileID: 11400000, guid: df957876e54dfc94b8316efa03d1cab0, type: 2}
+  RSkill: {fileID: 11400000, guid: 8ec72942ed0cbec4a893f08d3127518a, type: 2}
+  DSkill: {fileID: 11400000, guid: 83de11ea69ccd7548a8bcf620041e756, type: 2}
+  FSkill: {fileID: 11400000, guid: 8937698022c4a2740a7416232ade3c4a, type: 2}

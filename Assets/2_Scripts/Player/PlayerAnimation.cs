@@ -1,13 +1,26 @@
 using UnityEngine;
 
-public class PlayerAnimationController : MonoBehaviour
+public class PlayerAnimation : MonoBehaviour
 {
     private Animator anim;
-    public Animator Anim => anim;
+    private Player player;
+
+
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        player = GetComponent<Player>();
+    }
+
+    private void OnEnable()
+    {
+        player.onStateChange += Set;
+    }
+
+    private void OnDisable()
+    {
+        player.onStateChange -= Set;
     }
 
     public void Set(Player.State state)

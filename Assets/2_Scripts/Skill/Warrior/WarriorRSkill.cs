@@ -19,5 +19,4 @@ public class WarriorRSkill : SkillBase
     //         coolTimeImages[1].fillAmount = 1;
     //     }
     // }
-
 }

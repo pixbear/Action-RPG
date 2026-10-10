@@ -121,7 +121,7 @@ public class Tower : MonoBehaviour
                 if (attackTarget.CompareTag("Player"))
                 {
                     int _damage = Random.Range(25, 30);
-                    attackTarget.GetComponent<PlayerHpController>().TakeDamage(_damage);
+                    attackTarget.GetComponent<PlayerHp>().TakeDamage(_damage);
                 }
                 else if (attackTarget.CompareTag("EnemyRed"))
                 {

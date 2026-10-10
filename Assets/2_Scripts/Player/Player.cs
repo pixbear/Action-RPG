@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -17,23 +18,21 @@ public class Player : MonoBehaviour
     [SerializeField] PlayerDataSO data;
     public PlayerDataSO Data => data;
 
-    private PlayerAnimationController anim;
-    private PlayerMoveController move;
-    private PlayerHpController hp; 
     private CapsuleCollider col;
+
+    public Action onRespawn;
+    public Action<State> onStateChange;
+    public Action onDie;
 
     private void Awake()
     {
-        anim = GetComponent<PlayerAnimationController>();
-        move = GetComponent<PlayerMoveController>();
-        hp = GetComponent<PlayerHpController>();
         col = GetComponent<CapsuleCollider>();
     }
 
     public void SetState(State newState)
     {
         curState = newState;
-        anim.Set(newState);
+        onStateChange?.Invoke(newState);
     }
 
     public void SetStatus(PlayerDataSO newStatus)
@@ -44,10 +43,9 @@ public class Player : MonoBehaviour
     public void Die()
     {
         SetState(State.Dead);
+        onDie?.Invoke();
         UIManager.Instance.ShowDeadUI(Data.RespawnTime);
         gameObject.layer = LayerMask.NameToLayer("PlayerDead");
-        move.Stop();
-        hp.DisableUI();
         col.enabled = false;
         StartCoroutine(DieRoutien());
     }
@@ -63,9 +61,8 @@ public class Player : MonoBehaviour
         SetState(State.Idle);
         UIManager.Instance.HideDeadUI();
         gameObject.layer = LayerMask.NameToLayer("Player");
-        hp.EnableUI();
-        hp.SetFullHp();
         col.enabled = true;
         transform.position = GameManager.Instance.RespawnPosition.position;
+        onRespawn?.Invoke();
     }
 }

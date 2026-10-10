@@ -2,20 +2,28 @@ using UnityEngine;
 
 public class PlayerSkill : MonoBehaviour
 {
-    public SkillBase QSkill;
-    public SkillBase WSkill;
-    public SkillBase ESkill;
-    public SkillBase RSkill;
-    public SkillBase DSkill;
-    public SkillBase FSkill;
+    [SerializeField] SkillBase qSkill;
+    [SerializeField] SkillBase wSkill;
+    [SerializeField] SkillBase eSkill;
+    [SerializeField] SkillBase rSkill;
+    [SerializeField] SkillBase dSkill;
+    [SerializeField] SkillBase fSkill;
 
-    private void Update()
+    private Player player;
+
+    private void Awake()
     {
-        if (QSkill != null && Input.GetKeyDown(KeyCode.Q)) QSkill.TryUseSkill();
-        if (WSkill != null && Input.GetKeyDown(KeyCode.W)) WSkill.TryUseSkill();
-        if (ESkill != null && Input.GetKeyDown(KeyCode.E)) ESkill.TryUseSkill();
-        if (RSkill != null && Input.GetKeyDown(KeyCode.R)) RSkill.TryUseSkill();
-        if (DSkill != null && Input.GetKeyDown(KeyCode.D)) DSkill.TryUseSkill();
-        if (FSkill != null && Input.GetKeyDown(KeyCode.F)) FSkill.TryUseSkill();
+        player = GetComponentInParent<Player>();
+    }
+
+    private void Start()
+    {
+        var data = player.Data;
+        qSkill.Init(SkillBase.KeyType.Q, data.QSkill);
+        wSkill.Init(SkillBase.KeyType.W, data.WSkill);
+        eSkill.Init(SkillBase.KeyType.E, data.ESkill);
+        rSkill.Init(SkillBase.KeyType.R, data.RSkill);
+        dSkill.Init(SkillBase.KeyType.D, data.DSkill);
+        fSkill.Init(SkillBase.KeyType.F, data.FSkill);
     }
 }

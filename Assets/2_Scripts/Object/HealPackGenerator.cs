@@ -25,7 +25,7 @@ public class HealPackGenerator : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            PlayerHpController playerHp = other.GetComponent<PlayerHpController>();
+            PlayerHp playerHp = other.GetComponent<PlayerHp>();
 
             if (playerHp.GetHeal(healHp))
             {

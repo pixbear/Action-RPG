@@ -36,7 +36,7 @@ public class MinionColAttack : MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 int _damage = Random.Range(10, 15);
-                other.GetComponent<PlayerHpController>().TakeDamage(_damage);
+                other.GetComponent<PlayerHp>().TakeDamage(_damage);
             }
 
             if (other.CompareTag("EnemyRed"))

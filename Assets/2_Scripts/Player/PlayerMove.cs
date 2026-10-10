@@ -2,7 +2,7 @@ using PB.MANAGER;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerMoveController : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
     private float moveSpeed => player.Data.MoveSpeed;
     private float turnSpeed => moveSpeed * 3f;
@@ -25,6 +25,16 @@ public class PlayerMoveController : MonoBehaviour
         nav.speed = moveSpeed;
     }
 
+    private void OnEnable()
+    {
+        player.onDie += Stop;
+    }
+
+    private void OnDisable()
+    {
+        player.onDie -= Stop;
+    }
+
     private void Update()
     {
         SetMovePoint();
@@ -34,7 +44,7 @@ public class PlayerMoveController : MonoBehaviour
 
     private void SetMovePoint()
     {
-        if (Input.GetMouseButton(1)) // 1 = Mouse Right Button
+        if (Input.GetMouseButtonDown(1)) // 1 = Mouse Right Button
         {
             RaycastHit hit;
             LayerMask layer = LayerMask.GetMask("Ground");
@@ -50,8 +60,8 @@ public class PlayerMoveController : MonoBehaviour
 
     private void TryMove()
     {
-        bool isMoving = moveDir.sqrMagnitude > 0.01f;
         moveDir = new Vector3(movePoint.x, transform.position.y, movePoint.z) - transform.position;
+        bool isMoving = moveDir.sqrMagnitude > 0.01f;
         if (isMoving)
         {
             player.SetState(Player.State.Move);

@@ -13,23 +13,45 @@ public class SkillBase : MonoBehaviour
         F
     }
 
-    public KeyType Key;
-    public SkillDataSO Data;
+    private KeyType keyType;
+    private SkillDataSO data;
     private bool isCooltime;
     public bool IsCooltime => isCooltime;
 
     private Player player;
-    private PlayerAnimationController anim;
+    private PlayerAnimation anim;
 
     private void Awake()
     {
         player = GetComponent<Player>();
-        anim = GetComponent<PlayerAnimationController>();
+        anim = GetComponent<PlayerAnimation>();
     }
 
-    private void Start()
+    public void Init(KeyType key, SkillDataSO skillData)
     {
-        UIManager.Instance.SetSkillSlot(Key, Data);
+        keyType = key;
+        data = skillData;
+        UIManager.Instance.SetSkillSlot(keyType, data);
+    }
+
+    private void Update()
+    {
+        var key = StringToKeyCode(keyType.ToString()); 
+        if (Input.GetKeyDown(key)) TryUseSkill();
+    }
+
+    private KeyCode StringToKeyCode(string key)
+    {
+        switch (key)
+        {
+            case "Q": return KeyCode.Q;
+            case "W": return KeyCode.W;
+            case "E": return KeyCode.E;
+            case "R": return KeyCode.R;
+            case "D": return KeyCode.D;
+            case "F": return KeyCode.F;
+            default: return KeyCode.None;
+        }
     }
 
     public void TryUseSkill()
@@ -42,21 +64,21 @@ public class SkillBase : MonoBehaviour
 
     protected virtual void OnSkillUsed()
     {
-        UIManager.Instance.StartCooldown(Key);
+        UIManager.Instance.StartCooldown(keyType);
         StartCoroutine(SkillRoutine());
         StartCoroutine(CooldownRoutine());
     }
 
     protected virtual IEnumerator SkillRoutine()
     {    
-        anim.DoSkillAnimation(Key);
+        anim.DoSkillAnimation(keyType);
         yield return null;
     }
 
     private IEnumerator CooldownRoutine()
     {
         isCooltime = true;
-        yield return new WaitForSeconds(Data.CoolTime);
+        yield return new WaitForSeconds(data.CoolTime);
         isCooltime = false;
     }
 

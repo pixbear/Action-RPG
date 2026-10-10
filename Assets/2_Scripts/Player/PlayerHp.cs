@@ -2,7 +2,7 @@ using PB.MANAGER;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHpController : MonoBehaviour
+public class PlayerHp : MonoBehaviour
 {
     [SerializeField] Slider hpGage;                 
     private Player player;
@@ -16,19 +16,19 @@ public class PlayerHpController : MonoBehaviour
         curHp = maxHp;
     }
 
+    private void OnEnable()
+    {
+        player.onRespawn += SetFullHp;
+    }
+
+    private void OnDisable()
+    {
+        player.onRespawn -= SetFullHp;
+    }
+
     private void Start()
     {
         UpdateUI();
-    }
-
-    public void EnableUI()
-    {
-        hpGage.transform.parent.gameObject.SetActive(true);
-    }
-    
-    public void DisableUI()
-    {
-        hpGage.transform.parent.gameObject.SetActive(false);
     }
 
     public void TakeDamage(int damage) 
@@ -58,7 +58,7 @@ public class PlayerHpController : MonoBehaviour
         UIManager.Instance.UpdateHpUI(curHp, maxHp);
     }
 
-    public void SetFullHp()
+    private void SetFullHp()
     {
         curHp = maxHp;
         UpdateUI();

@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class PlayerAttackController : MonoBehaviour
+public class PlayerAttack : MonoBehaviour
 {  
     [SerializeField] GameObject attackCollision;
     private Player player;
-    private PlayerMoveController playerController;
+    private PlayerMove playerController;
    
     private void Awake()
     {
         player = GetComponent<Player>();
-        playerController = GetComponent<PlayerMoveController>();
+        playerController = GetComponent<PlayerMove>();
     }
 
     private void Update()
