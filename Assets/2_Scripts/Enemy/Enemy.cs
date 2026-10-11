@@ -1,7 +1,7 @@
 using System;
+using PB.MANAGER;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -22,41 +22,44 @@ public class Enemy : MonoBehaviour
     [SerializeField] LayerMask enemyLayer;
 
 
-    Animator       anim;
     NavMeshAgent   nav;
     Renderer       render;
-    Camera         cam;
     Rigidbody      rigid;
     SphereCollider col;
 
-    private Transform enemyBase;
+    private Transform oppositionBase;
     private Transform closeTarget;                                
     public Transform CloseTarget => closeTarget;
-
-    private Vector3 moveDir;
-    private bool isDead = false;
 
     public Action<Transform> onEnemySearched;
     public Action<State> onStateChanged;
     private State curState;
     public State CurState => curState;
 
-    private void Start()
-    {
-        enemyBase = WorldManager.Instance.GetBase(teamType).transform;
-        nav.updateRotation = false;
-        nav.SetDestination(enemyBase.position);
 
-        anim   = GetComponent<Animator>();
+    private void Awake()
+    {
         nav    = GetComponent<NavMeshAgent>();
         render = GetComponentInChildren<Renderer>();
         rigid  = GetComponent<Rigidbody>();
         col = GetComponent<SphereCollider>();
     }
+
+    private void Start()
+    {
+        var oppositionType = teamType == TeamType.Red ? TeamType.Blue : TeamType.Red;
+        oppositionBase = WorldManager.Instance.GetBase(oppositionType).transform;
+        nav.SetDestination(oppositionBase.position);
+    }
         
     private void Update()
     {
         SearchEnemy();
+    }
+
+    private void LateUpdate()
+    {
+        LookAtTarget();
     }
 
     public void SetState(State state)
@@ -90,29 +93,30 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            onEnemySearched?.Invoke(enemyBase);
+            onEnemySearched?.Invoke(oppositionBase);
         }
+    }
+
+    private void LookAtTarget()
+    {
+        bool isDead = curState == State.Dead;
+        bool noTarget = closeTarget == null;
+        if (isDead || noTarget) return;
+
+        transform.LookAt(closeTarget.position);
     }
 
 
     public void Die()
     {
         SetState(State.Dead);
-
-        nav.updateRotation = false;
-
         rigid.isKinematic = true;
-
         transform.position = new Vector3(transform.position.x, 0.083f, transform.position.z);
-
         col.enabled = false;
-
-        this.gameObject.layer = 7;
-
+        gameObject.layer = 7;
         render.material.color = new Color(0.5f, 0.5f, 0.5f, 1f);
-
         nav.enabled = false;
-
-        Destroy(gameObject, 3f);     
+        var key = string.Format("Enemy_{0}", teamType);
+        PObjectPoolManager.Instance.ReleaseAfterDelay(key, gameObject, 3);
     }
 }

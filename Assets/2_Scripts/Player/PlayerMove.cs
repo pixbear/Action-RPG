@@ -69,16 +69,8 @@ public class PlayerMove : MonoBehaviour
     private void TryMove()
     {
         moveDir = new Vector3(movePoint.x, transform.position.y, movePoint.z) - transform.position;
-        bool isMoving = moveDir.sqrMagnitude > 0.01f;
-        if (isMoving)
-        {
-            player.SetState(State.Move);
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(moveDir), turnSpeed * Time.deltaTime);
-        }
-        else
-        {
-            player.SetState(State.Idle);
-        }
+        player.SetState(State.Move);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(moveDir), turnSpeed * Time.deltaTime);
     }
 
     private void TryStop()

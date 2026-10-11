@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public enum TeamType
 {
@@ -29,11 +30,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text inGameplayTimeTxt;
 
 
+    public Action onGameStart;
+
+
     private void Awake()
     {
         Instance = this;
         Application.targetFrameRate = targetFrameRate;
         Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    private void Start()
+    {
+        onGameStart?.Invoke();
     }
 
     private void Update()

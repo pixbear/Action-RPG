@@ -17,11 +17,6 @@ public class EnemyAttack : MonoBehaviour
         TryAttack();
     }
 
-    private void LateUpdate()
-    {
-        LookAtTarget();
-    }
-
     private void TryAttack()
     {
         bool isDead = enemy.CurState == State.Dead;
@@ -41,15 +36,6 @@ public class EnemyAttack : MonoBehaviour
                 attackTimer = maxAttackRate;
             }
         }
-    }
-
-    private void LookAtTarget()
-    {
-        bool isDead = enemy.CurState == State.Dead;
-        bool noTarget = enemy.CloseTarget == null;
-        if (isDead || noTarget) return;
-
-        transform.LookAt(enemy.CloseTarget.position);
     }
 
     private void Attack()

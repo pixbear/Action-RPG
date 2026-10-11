@@ -1,15 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MinionColAttack : MonoBehaviour
+public class EnemyAttackCol : MonoBehaviour
 {
     enum MinionType { Red, Blue };
     [SerializeField] MinionType minionType;
 
     private void OnEnable()
     {
-        StartCoroutine("AttackRoutien");
+        StartCoroutine(AttackRoutine());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,7 +50,7 @@ public class MinionColAttack : MonoBehaviour
         }
     }
 
-    IEnumerator AttackRoutien()
+    IEnumerator AttackRoutine()
     {
         yield return new WaitForSeconds(0.1f);
 
