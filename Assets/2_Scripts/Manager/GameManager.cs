@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using PB.SYSTEM;
 
 public enum TeamType
 {
@@ -51,5 +52,10 @@ public class GameManager : MonoBehaviour
         int minutes = Mathf.FloorToInt(time / 60);
         int seconds = Mathf.FloorToInt(time % 60);
         inGameplayTimeTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public void GameOver()
+    {
+        PLog.Todo("Implement game over logic");
     }
 }

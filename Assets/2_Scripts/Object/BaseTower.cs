@@ -1,45 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
+using PB.MANAGER;
+using PB.SYSTEM;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainTower : MonoBehaviour
+public class BaseTower : MonoBehaviour
 {
-    Camera cam;
+    [SerializeField] GameObject hpGageBar;  
+    [SerializeField] Slider hpGage;         
+    private int curHp;
 
-    [SerializeField] GameObject hpGageBar;    // 체력 게이지 캔버스
-    [SerializeField] GameObject showDamage;   // 출력 데미지
-    [SerializeField] int curHp;               // 현재 체력
-    [SerializeField] Slider hpGage;           // 체력 게이지 바
-
-
-
-    private void Awake()
+    public void TakeDamage(int damage) 
     {
-        cam = FindObjectOfType<Camera>();
+        curHp -= damage;
+        UpdateUI();
+
+        var dmgTxt = PObjectPoolManager.Instance.Get<WorldSpaceDamageText>("DamageText", transform.position);
+        dmgTxt.Set(damage);
+
+        if (curHp <= 0) Die();
+    }      
+
+    private void UpdateUI()
+    {
+        hpGage.value = curHp;
     }
 
-    private void LateUpdate()
+    private void Die()
     {
-        HpGageBarLookCam();
-    }
-
-    void HpGageBarLookCam()
-    {
-        hpGageBar.transform.LookAt(hpGageBar.transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
-    }
-
-    public void TakeDamage(int _damage)
-    {
-        curHp -= _damage;
-        hpGage.value -= _damage;
-
-        // Show Damage
-        GameObject showDmgInstance = Instantiate(showDamage, transform.position + Vector3.up * 5, Quaternion.identity);
-        Text demageText = showDmgInstance.GetComponentInChildren<Text>();
-        demageText.text = _damage.ToString();
-        showDmgInstance.transform.LookAt(showDmgInstance.transform.position + cam.transform.rotation * Vector3.forward, cam.transform.rotation * Vector3.up);
-        showDmgInstance.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-1f, 1f), 3, 0), ForceMode.Impulse);
-        Destroy(showDmgInstance, 0.8f);
+        PLog.Todo("Game over logic for the tower");
+        GameManager.Instance.GameOver();
     }
 }

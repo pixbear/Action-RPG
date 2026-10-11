@@ -49,7 +49,7 @@ namespace PB.SYSTEM
         }
 
         [Conditional("UNITY_EDITOR")]
-        public static void ToDo(string message, [CallerMemberName] string callFunction = "", [CallerFilePath] string callClass = "")
+        public static void Todo(string message, [CallerMemberName] string callFunction = "", [CallerFilePath] string callClass = "")
         {
             var className = $"<color=white>{Path.GetFileNameWithoutExtension(callClass)}</color>";
             var logLevel = "<b><color=blue>[ TO DO ]</color></b>";

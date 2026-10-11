@@ -2,7 +2,7 @@ using System.Collections;
 using PB.MANAGER;
 using UnityEngine;
 
-public class MinionGenerator : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] int spawnInterval;
     [SerializeField] int waveCount;
