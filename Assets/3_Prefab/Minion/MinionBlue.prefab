@@ -1081,8 +1081,12 @@ GameObject:
   - component: {fileID: 2955662885800070122}
   - component: {fileID: 5149716140368905736}
   - component: {fileID: 1566218933173616276}
+  - component: {fileID: 611709834636449833}
+  - component: {fileID: 6534217079569519208}
+  - component: {fileID: 9057444573779825065}
+  - component: {fileID: 2376780618936310240}
   m_Layer: 12
-  m_Name: Minion Blue
+  m_Name: MinionBlue
   m_TagString: EnemyBlue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1104,7 +1108,6 @@ Transform:
   - {fileID: 3412919167801220000}
   - {fileID: 3405288782623279002}
   - {fileID: 3408302880821043110}
-  - {fileID: 6754062450577653758}
   - {fileID: 2871922738202996416}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1142,23 +1145,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamType: 1
-  navPos: {fileID: 0}
-  maxHp: 100
-  curHp: 100
-  hpGageBar: {fileID: 3408302880821043106}
-  hpGage: {fileID: 3408302882418301919}
-  showDamage: {fileID: 7484482314412720451, guid: abae98b05388bd643a887430b6d7c1bd, type: 3}
-  damageTextPos: {fileID: 6754062450577653758}
-  maxAttackRate: 2
-  enemyCheakRange: 6
-  attackRange: 2
-  attackLayer:
+  data:
+    MaxHp: 0
+    AttackRate: 0
+    AttackRange: 0
+    MoveSpeed: 0
+  enemyLayer:
     serializedVersion: 2
-    m_Bits: 2568
-  attackCollsion: {fileID: 1510301971979748881}
-  closeTarget: {fileID: 0}
-  lookTargetSpeed: 5
-  turnSpeed: 10
+    m_Bits: 0
 --- !u!54 &2955662885800070122
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1229,6 +1223,56 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &611709834636449833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407808105405834214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29990f8423416a348b6baadef9ae821d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCollsion: {fileID: 1510301971979748881}
+--- !u!114 &6534217079569519208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407808105405834214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61c9e4d6515d08745a486bba5c8273bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9057444573779825065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407808105405834214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aa2d8ab470ebd4281a04c9d3b230ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpGage: {fileID: 3408302882418301919}
+--- !u!114 &2376780618936310240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407808105405834214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951fbb1e73780694f89c7d377d132b22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3407812910425315562
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,35 +1775,4 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3412882988472684830}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8803561519733066299
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6754062450577653758}
-  m_Layer: 0
-  m_Name: DamageTextPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6754062450577653758
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8803561519733066299}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3413121406251168054}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

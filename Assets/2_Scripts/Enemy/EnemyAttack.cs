@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -20,15 +21,15 @@ public class EnemyAttack : MonoBehaviour
     private void TryAttack()
     {
         bool isDead = enemy.CurState == State.Dead;
-        bool noTarget = enemy.CloseTarget == null;
+        bool noTarget = enemy.Target == null;
         if (isDead || noTarget) return;
 
         var attackRange = enemy.Data.AttackRange;
         var maxAttackRate = enemy.Data.AttackRate;
 
-        if (Vector3.Distance(transform.position, enemy.CloseTarget.position) < attackRange)
+        if (Vector3.Distance(transform.position, enemy.Target.position) < attackRange)
         {
-            transform.LookAt(enemy.CloseTarget.position);
+            transform.LookAt(enemy.Target.position);
             attackTimer -= Time.deltaTime;
             if (attackTimer <= 0)
             {
@@ -41,6 +42,13 @@ public class EnemyAttack : MonoBehaviour
     private void Attack()
     {
         enemy.SetState(State.Attack);
+        StartCoroutine(AttackRoutine());
+    }
+
+    private IEnumerator AttackRoutine()
+    {
         attackCollsion.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        attackCollsion.SetActive(false);
     }
 }
