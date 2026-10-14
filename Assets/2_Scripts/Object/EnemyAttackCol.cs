@@ -15,38 +15,20 @@ public class EnemyAttackCol : MonoBehaviour
     {
         if (minionType == MinionType.Red)
         {
-            if (other.CompareTag("EnemyBlue"))
-            {
-                int _damage = Random.Range(10, 15);
-                other.GetComponent<EnemyHp>().TakeDamage(_damage);
-            }
+            if (other.CompareTag("Player")) return;
+            if (other.CompareTag("EnemyRed")) return;
+            if (other.CompareTag("TowerRed")) return;
 
-            if (other.CompareTag("TowerBlue"))
-            {
-                int _damage = Random.Range(10, 15);
-                other.GetComponent<Tower>().TakeDamage(_damage);
-            }
+            other.GetComponent<IDamageable>()?.TakeDamage(10);
         }
 
         if (minionType == MinionType.Blue)
         {
-            if (other.CompareTag("Player"))
-            {
-                int _damage = Random.Range(10, 15);
-                other.GetComponent<PlayerHp>().TakeDamage(_damage);
-            }
+            if (other.CompareTag("Player")) return;
+            if (other.CompareTag("EnemyBlue")) return;
+            if (other.CompareTag("TowerBlue")) return;
 
-            if (other.CompareTag("EnemyRed"))
-            {
-                int _damage = Random.Range(10, 15);
-                other.GetComponent<EnemyHp>().TakeDamage(_damage);
-            }
-
-            if (other.CompareTag("TowerRed"))
-            {
-                int _damage = Random.Range(10, 15);
-                other.GetComponent<Tower>().TakeDamage(_damage);
-            }
+            other.GetComponent<IDamageable>()?.TakeDamage(10);
         }
     }
 

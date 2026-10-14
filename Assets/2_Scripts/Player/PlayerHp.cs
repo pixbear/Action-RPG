@@ -2,7 +2,7 @@ using PB.MANAGER;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHp : MonoBehaviour
+public class PlayerHp : MonoBehaviour, IDamageable
 {
     [SerializeField] Slider hpGage;                 
     private Player player;
