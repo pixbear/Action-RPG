@@ -3,15 +3,24 @@ using PB.SYSTEM;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BaseTower : MonoBehaviour
+public class BaseTower : MonoBehaviour, IDamageable
 {
     [SerializeField] GameObject hpGageBar;  
     [SerializeField] Slider hpGage;         
+    [SerializeField] private int maxHp;
     private int curHp;
+
+
+    private void Start()
+    {
+        curHp = maxHp;
+        UpdateUI();
+    }
 
     public void TakeDamage(int damage) 
     {
         curHp -= damage;
+        if (curHp < 0) curHp = 0;
         UpdateUI();
 
         var dmgTxt = PObjectPoolManager.Instance.Get<WorldSpaceDamageText>("DamageText", transform.position);
@@ -22,7 +31,7 @@ public class BaseTower : MonoBehaviour
 
     private void UpdateUI()
     {
-        hpGage.value = curHp;
+        hpGage.value = (float)curHp / maxHp;
     }
 
     private void Die()

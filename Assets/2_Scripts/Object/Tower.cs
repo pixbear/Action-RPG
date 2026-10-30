@@ -19,7 +19,7 @@ public class Tower : MonoBehaviour
     [SerializeField] Transform firePos;       
     [SerializeField] LayerMask attackLayer;  
     [SerializeField] Slider hpGage;  
-
+ 
 
     private TowerData data;
     private float curAttackRate;   
