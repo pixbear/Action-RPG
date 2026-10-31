@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpGageBar: {fileID: 4331170933658844764}
   hpGage: {fileID: 4540827687183549705}
+  maxHp: 0
 --- !u!1 &3223575745040571681
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,8 +619,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1585503054399136146}
-  - component: {fileID: 1229737712852486446}
   - component: {fileID: 8400605414972526796}
+  - component: {fileID: 4566061599082075421}
   m_Layer: 10
   m_Name: Body
   m_TagString: TowerBlue
@@ -644,27 +645,6 @@ Transform:
   - {fileID: 2591098778614100724}
   m_Father: {fileID: 1919450269380957502}
   m_LocalEulerAnglesHint: {x: 0, y: 110, z: 0}
---- !u!65 &1229737712852486446
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7981633641271758649}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 5, y: 1.54, z: 5}
-  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!23 &8400605414972526796
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -707,3 +687,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &4566061599082075421
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7981633641271758649}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
