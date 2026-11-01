@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] Transform redTeamEnemySpawnPos;
+    [SerializeField] Transform blueTeamEnemySpawnPos;
     [SerializeField] int spawnInterval;
     [SerializeField] int waveCount;
 
@@ -37,15 +39,20 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(TeamType teamType)
     {
+        Transform spawnPos = null;
+        string enemyKey = null;
+        
         if (teamType == TeamType.Red)
         {
-            var spawnPos = WorldManager.Instance.GetEnemySpawnPos(TeamType.Red).position;
-            PObjectPoolManager.Instance.Get(string.Format("Enemy_{0}", TeamType.Red), spawnPos, Quaternion.identity);
+            spawnPos = redTeamEnemySpawnPos;
+            enemyKey = "Enemy_Red";
         }
         else if (teamType == TeamType.Blue)
         {
-            var spawnPos = WorldManager.Instance.GetEnemySpawnPos(TeamType.Blue).position;
-            PObjectPoolManager.Instance.Get(string.Format("Enemy_{0}", TeamType.Blue), spawnPos, Quaternion.identity);
+            spawnPos = blueTeamEnemySpawnPos;
+            enemyKey = "Enemy_Blue";
         }
+
+        PObjectPoolManager.Instance.Get(enemyKey, spawnPos.position, Quaternion.identity);
     }
 }

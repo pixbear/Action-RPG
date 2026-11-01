@@ -2,7 +2,7 @@ using PB.MANAGER;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Tower : MonoBehaviour
+public class Tower : MonoBehaviour, IDamageable
 {
     [System.Serializable]
     public class TowerData
@@ -14,17 +14,17 @@ public class Tower : MonoBehaviour
     }
 
     [SerializeField] TeamType teamType;
-    [SerializeField] GameObject brokenTower;     
+    [SerializeField] GameObject brokenTower;
     [SerializeField] GameObject attackRangeLine;
-    [SerializeField] Transform firePos;       
-    [SerializeField] LayerMask attackLayer;  
-    [SerializeField] Slider hpGage;  
- 
+    [SerializeField] Transform firePos;
+    [SerializeField] LayerMask attackLayer;
+    [SerializeField] Slider hpGage;
 
-    private TowerData data;
-    private float curAttackRate;   
-    private Transform curTarget = null;   
-    private int curHp;            
+
+    [SerializeField]  private TowerData data;
+    private float curAttackRate;
+    private Transform curTarget = null;
+    private int curHp;
 
 
 
@@ -32,11 +32,27 @@ public class Tower : MonoBehaviour
     {
         curHp = data.MaxHp;
         curAttackRate = data.AttackRate;
+        attackRangeLine.transform.localScale = new Vector3(data.AttackRange * 2, 1, data.AttackRange * 2);
     }
 
     private void Update()
     {
+        if (curTarget != null)
+        {
+            curAttackRate -= Time.deltaTime;
+            if (curAttackRate <= 0)
+            {
+                Attack();
+                curAttackRate = data.AttackRate;
+            }
+        }
+    }
 
+    private void Attack()
+    {
+        if (curTarget == null) return;
+        var bullet = PObjectPoolManager.Instance.Get("Bullet", firePos.position, Quaternion.identity);
+        bullet.GetComponent<Bullet>().SetTarget(curTarget, data.Damage);
     }
 
     private void LateUpdate()
@@ -59,21 +75,23 @@ public class Tower : MonoBehaviour
             }
         }
     }
-    public void TakeDamage(int damage) 
+    public void TakeDamage(int damage)
     {
         curHp -= damage;
+        if (curHp < 0) curHp = 0;
         UpdateUI();
 
         var dmgTxt = PObjectPoolManager.Instance.Get<WorldSpaceDamageText>("DamageText", transform.position);
         dmgTxt.Set(damage);
 
         if (curHp <= 0) Die();
-    }      
+    }
 
     private void UpdateUI()
     {
-            hpGage.value = (float)curHp / data.MaxHp;
+        hpGage.value = (float)curHp / data.MaxHp;
     }
+
     private void Die()
     {
         gameObject.SetActive(false);

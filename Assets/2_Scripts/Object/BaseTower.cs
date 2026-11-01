@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class BaseTower : MonoBehaviour, IDamageable
 {
-    [SerializeField] GameObject hpGageBar;  
     [SerializeField] Slider hpGage;         
     [SerializeField] private int maxHp;
     private int curHp;
